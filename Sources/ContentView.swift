@@ -79,12 +79,12 @@ struct ContentView: View {
             // Translucent background with materials
             if viewModel.isOvertime {
                 ZStack {
-                    Color.clear.background(.ultraThinMaterial)
-                    Color.red.opacity(0.1)
+                    .ultraThinMaterial
+                    Color.red.opacity(0.15)
                 }
                 .transition(.opacity)
             } else {
-                Color.clear.background(.ultraThinMaterial)
+                .ultraThinMaterial
             }
         }
         .animation(.easeInOut(duration: 0.3), value: viewModel.isOvertime)
