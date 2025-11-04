@@ -76,12 +76,15 @@ struct ContentView: View {
         }
         .frame(minWidth: 200, minHeight: 175)
         .background {
-            // Modern macOS background with materials
+            // Translucent background with materials
             if viewModel.isOvertime {
-                Color.red.opacity(0.05)
-                    .transition(.opacity)
+                ZStack {
+                    Color.clear.background(.ultraThinMaterial)
+                    Color.red.opacity(0.1)
+                }
+                .transition(.opacity)
             } else {
-                Color.clear
+                Color.clear.background(.ultraThinMaterial)
             }
         }
         .animation(.easeInOut(duration: 0.3), value: viewModel.isOvertime)
