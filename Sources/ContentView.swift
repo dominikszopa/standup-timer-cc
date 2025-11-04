@@ -4,11 +4,11 @@ struct ContentView: View {
     @State private var viewModel = TimerViewModel()
 
     var body: some View {
-        VStack(spacing: 30) {
+        VStack(spacing: 15) {
             // Timer Display
-            VStack(spacing: 12) {
+            VStack(spacing: 6) {
                 Text(viewModel.timeDisplay)
-                    .font(.system(size: 72, weight: .bold, design: .rounded))
+                    .font(.system(size: 36, weight: .bold, design: .rounded))
                     .foregroundStyle(viewModel.isOvertime ? .red : .primary)
                     .monospacedDigit()
                     .contentTransition(.numericText())
@@ -17,7 +17,7 @@ struct ContentView: View {
                 // Witty message when overtime
                 if viewModel.isOvertime && !viewModel.currentWittyMessage.isEmpty {
                     Text(viewModel.currentWittyMessage)
-                        .font(.title3)
+                        .font(.caption)
                         .fontWeight(.medium)
                         .foregroundStyle(.red)
                         .multilineTextAlignment(.center)
@@ -25,22 +25,22 @@ struct ContentView: View {
                         .animation(.spring(duration: 0.5), value: viewModel.currentWittyMessage)
                 }
             }
-            .padding(.top, 40)
+            .padding(.top, 20)
 
             // Progress indicator
             if !viewModel.isOvertime {
                 ProgressView(value: Double(60 - viewModel.timeRemaining), total: 60)
                     .progressViewStyle(.linear)
                     .tint(.blue)
-                    .frame(maxWidth: 300)
+                    .frame(maxWidth: 150)
             } else {
                 Divider()
-                    .frame(maxWidth: 300)
+                    .frame(maxWidth: 150)
                     .overlay(.red)
             }
 
             // Buttons
-            HStack(spacing: 16) {
+            HStack(spacing: 8) {
                 Button(action: {
                     if viewModel.isRunning {
                         viewModel.stop()
@@ -52,10 +52,10 @@ struct ContentView: View {
                         Image(systemName: viewModel.isRunning ? "pause.fill" : "play.fill")
                         Text(viewModel.isRunning ? "Pause" : "Start")
                     }
-                    .frame(minWidth: 100)
+                    .frame(minWidth: 50)
                 }
                 .buttonStyle(.borderedProminent)
-                .controlSize(.large)
+                .controlSize(.small)
                 .tint(viewModel.isRunning ? .orange : .blue)
                 .keyboardShortcut(.space, modifiers: [])
 
@@ -66,15 +66,15 @@ struct ContentView: View {
                         Image(systemName: "arrow.forward.circle.fill")
                         Text("Next")
                     }
-                    .frame(minWidth: 100)
+                    .frame(minWidth: 50)
                 }
                 .buttonStyle(.bordered)
-                .controlSize(.large)
+                .controlSize(.small)
                 .keyboardShortcut(.return, modifiers: [.command])
             }
-            .padding(.bottom, 40)
+            .padding(.bottom, 20)
         }
-        .frame(minWidth: 400, minHeight: 350)
+        .frame(minWidth: 200, minHeight: 175)
         .background {
             // Modern macOS background with materials
             if viewModel.isOvertime {
