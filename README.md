@@ -30,31 +30,49 @@ A beautiful, modern macOS standup timer built with SwiftUI. Perfect for keeping 
 
 ### Build Instructions
 
-#### Option 1: Using Xcode
+#### Option 1: Build Standalone App (Recommended)
+
+Create a proper macOS .app bundle that can be installed in your Applications folder:
+
+```bash
+# Run the build script
+./build_app.sh
+
+# Install to Applications folder
+cp -r ".build/release/Standup Timer.app" /Applications/
+
+# Or open directly
+open ".build/release/Standup Timer.app"
+```
+
+The app will be built as a proper macOS application that you can:
+- Copy to `/Applications/` folder
+- Launch from Spotlight (Cmd+Space)
+- Add to your Dock
+- Distribute to others
+
+#### Option 2: Using Xcode
 
 1. Open the project directory in Terminal
 2. Run: `open Package.swift`
 3. Xcode will open the project
 4. Click the Run button (or press Cmd+R)
 
-#### Option 2: Using Terminal
+#### Option 3: Quick Development Run
+
+For quick testing during development:
 
 ```bash
-# Build the app
-swift build
-
-# Run the app
+# Build and run directly
 swift run
 ```
 
-#### Option 3: Create a standalone app
+### Creating a DMG for Distribution
+
+After building the standalone app, you can create a disk image for distribution:
 
 ```bash
-# Build in release mode
-swift build -c release
-
-# The binary will be at:
-# .build/release/StandupTimer
+hdiutil create -volname "Standup Timer" -srcfolder ".build/release/Standup Timer.app" -ov -format UDZO "StandupTimer.dmg"
 ```
 
 ## Project Structure
@@ -62,8 +80,10 @@ swift build -c release
 ```
 standup-timer-cc/
 ├── Package.swift              # Swift package manifest
+├── Info.plist                # App bundle metadata
+├── build_app.sh              # Build script for standalone .app
 ├── Sources/
-│   ├── main.swift            # App entry point
+│   ├── StandupTimerApp.swift # App entry point
 │   ├── ContentView.swift     # Main UI view
 │   └── TimerViewModel.swift  # Timer logic and state
 └── README.md
