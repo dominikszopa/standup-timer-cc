@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:standup-timer-cc}",
+            "name": "Debug StandupTimer",
+            "target": "StandupTimer",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug StandupTimer"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:standup-timer-cc}",
+            "name": "Release StandupTimer",
+            "target": "StandupTimer",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release StandupTimer"
+        }
+    ]
+}
