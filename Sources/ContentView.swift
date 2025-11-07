@@ -14,14 +14,6 @@ struct ContentView: View {
                 )
                 .frame(width: 200, height: 200)
 
-                // Digital time display below clock
-                Text(viewModel.timeDisplay)
-                    .font(.system(size: 20, weight: .semibold, design: .rounded))
-                    .foregroundStyle(viewModel.isOvertime ? .red : .primary)
-                    .monospacedDigit()
-                    .contentTransition(.numericText())
-                    .animation(.spring(duration: 0.3), value: viewModel.timeDisplay)
-
                 // Witty message when overtime
                 if viewModel.isOvertime && !viewModel.currentWittyMessage.isEmpty {
                     Text(viewModel.currentWittyMessage)
