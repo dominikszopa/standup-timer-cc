@@ -184,7 +184,7 @@ struct ClockHand: View {
                     .frame(width: 3, height: geometry.size.height / 2 - 20)
                     .offset(y: -(geometry.size.height / 4 - 10)) // Offset upward by half the hand length
             }
-            .rotationEffect(.degrees(angle - 90)) // -90 to start at top (12 o'clock)
+            .rotationEffect(.degrees(angle))
             .frame(width: geometry.size.width, height: geometry.size.height)
             .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
         }
