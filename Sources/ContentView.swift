@@ -175,15 +175,18 @@ struct ClockHand: View {
     var body: some View {
         GeometryReader { geometry in
             let elapsed = isOvertime ? 0 : (totalTime - timeRemaining)
-            let angle = Double(elapsed) * 6.0 - 90 // 6° per second, start at top
+            let angle = Double(elapsed) * 6.0 // 6° per second
 
-            // Hand
-            Capsule()
-                .fill(isOvertime ? Color.red : Color.blue)
-                .frame(width: 3, height: geometry.size.height / 2 - 20)
-                .offset(y: -(geometry.size.height / 2 - 20) / 2)
-                .rotationEffect(.degrees(angle))
-                .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+            // Hand - using ZStack to properly center and rotate
+            ZStack {
+                Capsule()
+                    .fill(isOvertime ? Color.red : Color.blue)
+                    .frame(width: 3, height: geometry.size.height / 2 - 20)
+                    .offset(y: -(geometry.size.height / 4 - 10)) // Offset upward by half the hand length
+            }
+            .rotationEffect(.degrees(angle - 90)) // -90 to start at top (12 o'clock)
+            .frame(width: geometry.size.width, height: geometry.size.height)
+            .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
         }
     }
 }
