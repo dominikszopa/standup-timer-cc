@@ -12,7 +12,7 @@ struct ContentView: View {
                     totalTime: 60,
                     isOvertime: viewModel.isOvertime
                 )
-                .frame(width: 200, height: 200)
+                .frame(width: 100, height: 100)
 
                 // Witty message when overtime
                 if viewModel.isOvertime && !viewModel.currentWittyMessage.isEmpty {
@@ -62,7 +62,7 @@ struct ContentView: View {
             }
             .padding(.bottom, 20)
         }
-        .frame(minWidth: 250, minHeight: 350)
+        .frame(minWidth: 175, minHeight: 250)
         .background {
             // Modern macOS background with materials
             if viewModel.isOvertime {
