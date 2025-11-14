@@ -62,7 +62,7 @@ struct ContentView: View {
             }
             .padding(.bottom, 20)
         }
-        .frame(minWidth: 175, minHeight: 250)
+        .frame(minWidth: 150, minHeight: 140)
         .background {
             // Modern macOS background with materials
             if viewModel.isOvertime {
